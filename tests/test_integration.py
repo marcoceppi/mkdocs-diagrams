@@ -31,3 +31,4 @@ def test_build(tmp_path):
     index_html = file_contents(tmp_path / "site" / "index.html")
     assert "mkdocs-diagrams" in index_html
     assert os.path.exists(tmp_path / "site" / "event_processing.png")
+    assert not os.path.exists(tmp_path / "docs" / "event_processing.png")
