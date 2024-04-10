@@ -86,8 +86,10 @@ class DiagramsPlugin(mkdocs.plugins.BasePlugin):
             try:
                 job.result()
             except Exception:
-                self.log.exception("Worker raised an exception while rendering a diagram")
 
+                self.log.exception(
+                    "Worker raised an exception while rendering a diagram"
+                )
     def on_pre_build(self, config):
         global last_run_timestamp
         if int(time.time()) - last_run_timestamp < 10:

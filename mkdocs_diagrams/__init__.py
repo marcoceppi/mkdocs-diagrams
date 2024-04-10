@@ -1,3 +1,3 @@
 from .plugin import DiagramsPlugin
 
-__all__ = [DiagramsPlugin]
+__all__ = ["DiagramsPlugin"]
