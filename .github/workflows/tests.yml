@@ -25,4 +25,4 @@ jobs:
       - name: Install graphviz
         run: sudo apt-get install --no-install-recommends graphviz
       - name: Run tests
-        run: pytest
+        run: poetry run pytest
