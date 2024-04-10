@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/marcoceppi/mkdocs-diagrams/compare/v2.0.0...v2.0.1) (2024-04-10)
+
+
+### Bug Fixes
+
+* package name ([aaf6de5](https://github.com/marcoceppi/mkdocs-diagrams/commit/aaf6de50eab00d7b2ee099115a4cd5f9d3fd869a))
+
 ## 2.0.0 (2024-04-10)
 
 
