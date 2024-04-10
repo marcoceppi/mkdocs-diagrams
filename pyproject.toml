@@ -1,10 +1,13 @@
 [tool.poetry]
-name = "mkdocs-diagrams"
+name = "mkdocs-diagrams-plugin"
 version = "2.0.0"
 description = "MkDocs plugin to render Diagrams files"
 authors = ["Marco Ceppi <marco@ceppi.net>"]
 license = "MIT"
 readme = "README.md"
+packages = [
+    { include = "mkdocs_diagrams" },
+]
 
 [tool.poetry.plugins."mkdocs.plugins"]
 diagrams = "mkdocs_diagrams:DiagramsPlugin"
