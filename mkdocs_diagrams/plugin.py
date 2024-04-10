@@ -46,20 +46,15 @@ class DiagramsPlugin(mkdocs.plugins.BasePlugin):
 
     def _render_diagram(self, file):
         self.log.debug(f"Rendering {file.name}")
-        # The two commented lines below would build in the destination
-        # (site_dir) directory instead of the original source directory.
-        # Unfortunately this results in incorrect image URLs (they don't get
-        # rewritten to the proper relative path one directory up).
-        #
-        # dest_dir = os.path.dirname(file.abs_dest_path)
-        # filename = file.abs_dest_path[len(dest_dir)+1:]
-        dest_dir = os.path.dirname(file.abs_src_path)
-        filename = file.abs_src_path[len(dest_dir) + 1:]
+        dest_dir = os.path.dirname(file.abs_dest_path)
+        filename = file.abs_dest_path[len(dest_dir)+1:]
+        #dest_dir = os.path.dirname(file.abs_src_path)
+        #filename = file.abs_src_path[len(dest_dir) + 1 :]
 
         # Even when writing in abs_src_path rather than abs_dest_path, this
         # seems needed to make livereload accurately pick up changes.
-        os.makedirs(os.path.dirname(file.abs_dest_path), exist_ok=True)
-        shutil.copy(file.abs_src_path, file.abs_dest_path)
+        #os.makedirs(os.path.dirname(file.abs_dest_path), exist_ok=True)
+        #shutil.copy(file.abs_src_path, file.abs_dest_path)
 
         # Try to get the full path to the currently used interpreter. This
         # helps ensure we use the right one even with virtualenvs, etc.,
@@ -86,16 +81,9 @@ class DiagramsPlugin(mkdocs.plugins.BasePlugin):
             try:
                 job.result()
             except Exception:
-
                 self.log.exception(
                     "Worker raised an exception while rendering a diagram"
                 )
-    def on_pre_build(self, config):
-        global last_run_timestamp
-        if int(time.time()) - last_run_timestamp < 10:
-            self.log.info(
-                "Watcher started looping, skipping diagrams rendering on this run"
-            )
-            return
+
+    def on_post_build(self, config):
         self._walk_files_and_render(config)
-        last_run_timestamp = int(time.time())
