@@ -19,7 +19,7 @@ def file_contents(path):
 def test_build(tmp_path):
     with open(tmp_path / "mkdocs.yml", "w") as f:
         f.write(MKDOCS_CONFIG)
-    shutil.copytree("test_docs", tmp_path / "docs")
+    shutil.copytree("tests/test_docs", tmp_path / "docs")
     shutil.copy("README.md", tmp_path / "docs" / "README.md")
 
     subprocess.run(
